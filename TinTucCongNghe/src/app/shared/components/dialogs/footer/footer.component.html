@@ -1,0 +1,36 @@
+<div class="modal-footer padding-lr-10 padding-tb-10 bg-grey-steel">
+
+  <div class="action w-100">
+      <div class="pull-left">
+
+          <app-button class="btn-save" [key]="'save'"
+                      [classCssButton]="'margin-r-5'"
+                      [valid]="statusForm"
+                      (callBack)="save()">
+          </app-button>
+
+          <app-button class="btn-delete" [key]="'delete'"
+                      [classCssButton]="'margin-r-5'"
+                      *ngIf="!confirm && !isNew"
+                      (callBack)="confirmDelete()">
+          </app-button>
+
+          <app-button [key]="'confirm_delete'" *ngIf="confirm"
+                      [classCssButton]="'margin-r-5'"
+                      (callBack)="delete()">
+          </app-button>
+
+          <app-button [key]="'back'" *ngIf="confirm"
+                      [classCssButton]="'margin-r-5'"
+                      (callBack)="cancelDelete()">
+          </app-button>
+
+
+      </div>
+      <div class="pull-right">
+            <app-button [key]="'close'"  
+                    (click)="modalRef.hide()">
+            </app-button>
+      </div>
+  </div>
+</div>

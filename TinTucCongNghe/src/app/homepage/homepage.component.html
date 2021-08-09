@@ -1,0 +1,105 @@
+<app-header [deviceXs]="deviceXs"></app-header>
+<section class="banner">
+    <div class="banner-main-content">
+        <h2>TIN TỨC CÔNG NGHỆ MỚI NHẤT VỀ CÔNG NGHỆ TRÊN THẾ GIỚI</h2>
+        <h3>Cổng thông tin công nghệ mới về công nghệ trên thế giới</h3>
+        <div class="current-news-head">
+            <h3>Redmi Note 8 2021 sẽ dùng chip MediaTek Helio G85 với RAM đến 4GB<span>Theo Techz.vn</span></h3>
+
+            <h3>Apple chính thức ra mắt nhạc Lossless và Dolby Atmos<span>Theo Techz.vn</span></h3>
+
+            <h3>iPadOS 15 chính thức ra mắt với cải tiến về màn hình chính và đa nhiệm<span>Theo Techz.vn</span></h3>
+
+            <h3>Apple sẽ ra mắt Macbook với màn MiniLED vào Q3/2021 thay vì tuần tới <span>Theo Techz.vn</span></h3>
+        </div>
+    </div>
+
+    <div class="banner-sub-content">
+        <div class="hot-topic">
+            <img src="https://media.techz.vn/media2019/source/1-Ve-bai-PR/thang-3-2021/cong-nghe/nokia/nokia-x20/nokia-c01-plus.png" alt="">
+
+            <div class="hot-topic-content">
+                <p>Nokia C01 Plus ra mắt: Chạy hệ điều hành Android 11 Go, hỗ trợ 2 SIM, giá 2 triệu đồng</p>
+                <a href="https://www.techz.vn/143-621-2-nokia-c01-plus-ra-mat-chay-he-dieu-hanh-android-11-go-ho-tro-2-sim-gia-2-trieu-dong-ylt531615.html"><button mat-button>XEM THÊM</button></a>
+            </div>
+        </div>
+
+        <div class="hot-topic">
+            <img src="https://media.techz.vn/media2019/source/2A-Tung/%E1%BA%A2nh/m1-chip-moi-1.jpg" alt="">
+
+            <div class="hot-topic-content">
+                <p>Samsung bắt tay AMD đưa đồ họa RDNA 2 lên chip Exynos cạnh tranh với Apple M1</p>
+                <a href="https://www.techz.vn/189-621-1-samsung-bat-tay-amd-dua-do-hoa-rdna-2-len-chip-exynos-canh-tranh-voi-apple-m1-ylt530947.html?utm_source=dable"><button mat-button>XEM THÊM</button></a>
+            </div>
+        </div>
+
+        <div class="hot-topic">
+            <img src="https://media.techz.vn/media2019/source/2A-Tung/%E1%BA%A2nh/apple/lcimg-874de771-58bc-4070-8971-4f68cc1a38b4.jpg" alt="">
+
+            <div class="hot-topic-content">
+                <p>Apple chính thức ra mắt iOS 15 thay đổi lớn về Facetime, iMess, chụp ảnh và hơn thế nữa</p>
+                <a href="https://www.techz.vn/189-621-1-apple-chinh-thuc-gioi-thieu-ios-15-thay-doi-lon-ve-facetime-imess-chup-anh-va-hon-the-nua-ylt531485.html"><button mat-button>XEM THÊM</button></a>
+            </div>
+        </div>
+
+        <div class="hot-topic">
+            <img src="https://media.techz.vn/media2019/source/2A-Tung/%E1%BA%A2nh/apple/ios-15-9.jpg" alt="">
+            <div class="hot-topic-content">
+                <p>iPhone vẫn định vị được ngay cả khi tắt nguồn nếu cài iOS 15</p>
+                <a href="https://www.techz.vn/189-621-1-iphone-van-dinh-vi-duoc-ngay-ca-khi-tat-nguon-neu-cai-ios-15-ylt531606.html"><button mat-button>XEM THÊM</button></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<hr>
+
+<main>
+    <section class="main-container-left">
+        <h2>Tin Nổi Bật</h2>
+        <div class="container-top-left">
+            <article>
+                <img src="https://media.techz.vn/media2019/source/2A-Tung/%E1%BA%A2nh/quat-xiaomi/review-quat-xiaomi-12.jpg" alt="">
+
+                <div>
+                    <h3>Đánh giá quạt Mi Smart Standing Fan 2: Nhỏ gọn, không ồn, kết nối thông minh với smartphone</h3>
+
+                    <p>Quạt thông minh Mi Smart Standing Fan 2 của Xiaomi mang đến những trải nghiệm thú vị hơn rất nhiều so với quạt truyền thống.</p>
+                    <a href="https://www.techz.vn/189-621-1-danh-gia-quat-thong-minh-mi-smart-standing-fan-2-nho-gon-khong-on-dieu-khien-qua-smartphone-ylt531140.html"><button mat-button>XEM THÊM</button></a>
+                    <!-- <button mat-button (click)="openDialog()">XEM THÊM</button> -->
+                </div>
+            </article>
+        </div>
+
+        <div class="container-bottom-left">
+            <article *ngFor="let bv of _baiViets">
+                <img src="{{bv.imgSrc}}">
+                <div>
+                    <h1>{{bv.title}}</h1>
+                    <button mat-button (click)="openDialog() ">XEM THÊM</button>
+                    <button mat-button>CHIA SẺ</button>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <section class="main-container-right ">
+        <h2>Tin Mới Cập Nhật</h2>
+
+        <article *ngFor="let bv of _baiViets">
+
+            <img src="https://cms.techz.vn/upload2019/2021/06/16/anh-thumb_16062021105348.png">
+            <div>
+                <h2>{{bv.title}}</h2>
+
+                <h4 [innerHTML]="bv.description "></h4>
+
+                <button mat-button (click)="openDialog() ">XEM THÊM</button>
+                <button mat-button>CHIA SẺ</button>
+            </div>
+        </article>
+
+    </section>
+</main>
+<app-footer></app-footer>

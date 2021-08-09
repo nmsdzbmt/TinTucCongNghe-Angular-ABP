@@ -1,0 +1,68 @@
+<div [@routerTransition]>
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="col-6">
+        <h4>
+          <i class="{{ icon }}"></i>
+          {{ title }}
+        </h4>
+      </div>
+      <div class="col-6 text-right">
+        <button class="btn btn-sm icon-right" [disabled]="!selectionIds.length" [style.backgroundColor]="'#e7505a'" (click)="clickSelectionButton()">
+          <i class="fa {{ selectionIcon || 'fa-trash' }}"></i>
+          {{ selectionTitle || 'Xóa dữ liệu đã chọn' }}
+        </button>
+        <app-file-import *ngIf="importCode" [importCode]="importCode" (importSuccess)="importSuccess.emit($event)"></app-file-import>
+        <ng-container *ngFor="let item of actions">
+          <button
+            *ngIf="!item.hide || !item.hide()"
+            class="btn btn-sm icon-right"
+            [style.backgroundColor]="item.background || '#e7505a'"
+            (click)="item.callbackFunction()"
+          >
+            <i class="fa" [ngClass]="item.icon ? 'item.icon' : 'fa-plus'"></i>
+            {{ item.description }}
+          </button>
+        </ng-container>
+      </div>
+    </div>
+  </section>
+  <section class="content">
+    <div class="filter-overview" *ngIf="filterData?.length">
+      <ng-container *ngFor="let item of filterData">
+        <!-- text -->
+        <div *ngIf="item.type === 'text'" class="fo-dropdownlist form-group">
+          <label>{{ item.name }}</label>
+          <app-search-box
+          [icon]="item.data['icon']"
+          [minWidth]="item.data['minWidth']"
+          [maxHeight]="item.data['maxHeight']"
+          (textSearchChange)="receiveData($event)"
+          ></app-search-box>
+        </div>
+        <!-- dropdown -->
+        <div *ngIf="item.type === 'dropdownlist'" class="fo-dropdownlist form-group">
+          <label>{{ item.name }}</label>
+          <app-dropdownlist
+            [(model)]="item.data['model']"
+            [groupAddonIcon]="item.data['icon']"
+            [dropdownData]="item.data['dropdownData']"
+            [showSearch]="item.data['showSearch']"
+            [minWidth]="item.data['minWidth']"
+            [maxHeight]="item.data['maxHeight']"
+            [showEmpty]="item.data['showEmpty']"
+            (modelChange)="modelChange(item)"
+          ></app-dropdownlist>
+        </div>
+      </ng-container>
+    </div>
+    <div class="container-fluid">
+      <app-table-overview
+        *ngIf="tableOverViewModel"
+        [tableOverViewModel]="tableOverViewModel"
+        (pageChange)="pageChange.emit($event)"
+        (selectionIdsChange)="selectionIds = $event"
+      ></app-table-overview>
+    </div>
+  </section>
+</div>

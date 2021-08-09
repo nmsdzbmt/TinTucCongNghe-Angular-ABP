@@ -1,0 +1,76 @@
+<div class="table_default row">
+<div class="table_acton_filter col-xs-12 display-flex">
+    <app-table-filter class="flex-fill" [search]="search" [headers]="headers" [listFilter]="listFilter"></app-table-filter>
+    <div class="action" *ngIf="add">
+        <app-button [key]="'add'" [text]="textButtonAdd" (callBack)="onClick(null, 'add', null)"></app-button>
+    </div>
+</div>
+<div class="col-xs-12 table-responsive">
+    <table class="table table-bordered">
+        <thead>
+            <tr class="bg-blue">
+                <th class="text-center font-white" width="30">#</th>
+            <ng-container *ngFor="let header of headers; let indexHeader = index">
+
+                <th *ngIf="!getHidden(indexHeader)" class="font-white {{ getAlign(indexHeader) }}" [attr.width]="getWidth(indexHeader)">
+                    <ng-container *ngIf="!header.template"  [ngTemplateOutlet]="header_default"  [ngTemplateOutletContext]="{ header: header, index: indexHeader}"></ng-container>
+                    <ng-container *ngIf="header.template"   [ngTemplateOutlet]="header.template" [ngTemplateOutletContext]="{ header: header, index: indexHeader}"></ng-container>
+                </th>
+            </ng-container>
+
+            <th width="50" class="padding-lr-3" *ngIf="edit"></th>
+            </tr>
+
+        </thead>
+        <tbody>
+            <ng-container *ngFor="let item of listData | tableDefaultPipe:search.value:search.key:keySort:valueSort; let index = index; ">
+                <ng-container *ngIf="trPreviousTemplate" [ngTemplateOutlet]="trPreviousTemplate"
+                    [ngTemplateOutletContext]="{ data: getDataByEntityId(item._entityId), index:getIndexByEntityId(item._entityId) }">
+                </ng-container>
+                <tr>
+                    <td class="text-center">{{ index + 1 }}</td>
+
+                    <ng-container *ngFor="let header of headers; let indexHeader = index">
+                        <td *ngIf="!header.templateChild && !getHidden(indexHeader) && !header.keySub" [ngClass]="header.key == 'name' ? setMarginOrder(item) : ''" class="{{ getAlign(indexHeader) }}">
+                            <span>
+                                {{ item[header.key]  }}
+                            </span>
+                        </td>
+                        <td *ngIf="!header.templateChild && !getHidden(indexHeader) && header.keySub" [ngClass]="header.key == 'name'|| header.keySub =='name' ? setMarginOrder(item) : ''" class="{{ getAlign(indexHeader) }}">
+                            <span>
+                                {{ item[header.key]  }} - {{ item[header.keySub]  }}
+                            </span>
+                        </td>
+                        <td class="padding-0 vertical-align-middle {{ getAlign(indexHeader) }}" *ngIf="header.templateChild && !getHidden(indexHeader)">
+                            <ng-container [ngTemplateOutlet]="header.templateChild"
+                                          [ngTemplateOutletContext]="{ data: getDataByEntityId(item._entityId), header: header, index:getIndexByEntityId(item._entityId) }">
+                            </ng-container>
+                        </td>
+
+                    </ng-container>
+                    <td class="text-center padding-lr-3" *ngIf="edit">
+                        <app-button [key]="'edit'" (callBack)="onClick(getDataByEntityId(item._entityId), 'edit')"></app-button>
+                    </td>
+                </tr>
+
+                <ng-container *ngIf="trNextToTemplate" [ngTemplateOutlet]="trNextToTemplate"
+                    [ngTemplateOutletContext]="{ data: getDataByEntityId(item._entityId), index:getIndexByEntityId(item._entityId) }">
+                </ng-container>
+
+                <!-- <tr *ngIf="checked">
+                    <td [colSpan]="headers.length + 1">
+                        <ng-container [ngTemplateOutlet]="templateContent"></ng-container>
+                    </td>
+                </tr> -->
+            </ng-container>
+
+        </tbody>
+    </table>
+</div>
+</div>
+
+<ng-template #header_default let-header="header" let-index="index">
+{{ header.value }}
+<i (click)="sort(index)" *ngIf="header.order"  class="pointer fa fa-sort-alpha-{{ header.order == 'asc' ? 'asc' : 'desc' }} pull-right margin-r-6 margin-t-3 pull-right" title="Sắp xếp"></i>
+
+</ng-template>

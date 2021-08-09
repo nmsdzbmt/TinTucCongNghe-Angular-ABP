@@ -1,0 +1,46 @@
+$border-color: #ddd;
+
+table {
+  border-collapse: collapse;
+
+  tr {
+    &.odd {
+      background: #f9f9f9;
+    }
+
+    &:hover {
+      background: #f3f4f6 !important;
+    }
+  }
+
+  td,
+  th {
+    border: 1px solid $border-color;
+    padding: 10px;
+    text-align: left;
+    vertical-align: middle;
+
+    button {
+      height: 25px;
+      white-space: nowrap;
+      font-size: 0.9rem;
+      font-weight: 400;
+      padding: 0 0.75rem;
+    }
+
+    &.checkbox {
+      width: 50px;
+      text-align: center;
+    }
+
+    input[type='number'] {
+      text-align: right;
+      border: 1px solid #a0a0a0;
+    }
+  }
+}
+
+.card-footer {
+  margin: 0 -1.5rem;
+  border: none;
+}

@@ -1,0 +1,43 @@
+<div class="group-control form-control three-dots" [style.minWidth.px]="minWidth" [style.width.px]="minWidth">
+  <span *ngIf="groupAddonIcon"><i class="auto {{ groupAddonIcon }}"></i> </span>
+  <div class="btn-group dropdown display-inline width-p-100" dropdown>
+    <button
+      (click)="setWidthDropdownlist(); isOpen = !isOpen"
+      cdkOverlayOrigin
+      type="button"
+      class="btn btn-default width-p-100 text-left-important border-radius-l-0 min-height-34 dropdown-toggle"
+      dropdownToggle
+      [class.disabled]="!dropdownData?.length"
+    >
+      <span> {{ type === 'checkbox' ? defaultName : name || defaultName || (showEmpty ? 'All' : 'Select') }}</span>
+      <span class="caret pull-right" [class.open]="isOpen"><i class="fa fa-angle-down"></i></span>
+    </button>
+  </div>
+</div>
+
+<ng-template
+  cdkConnectedOverlay
+  [cdkConnectedOverlayOrigin]="trigger"
+  [cdkConnectedOverlayOpen]="isOpen"
+  [cdkConnectedOverlayWidth]="width"
+  [cdkConnectedOverlayHeight]="maxHeight"
+  (overlayOutsideClick)="isOpen = false; $event.stopPropagation()"
+>
+  <div class="search margin-t-5" *ngIf="showSearch">
+    <input [(ngModel)]="searchModel" autofocus placeholder="Tìm kiếm" />
+  </div>
+  <ul class="width-p-100 overlay-dropdown-menu" [class.margin-t-5]="!showSearch" perfectScrollbar>
+    <li
+      *ngFor="let item of dropdownData | filterData: 'name':searchModel"
+      (click)="selectItem(item)"
+      [class.disabled]="item.disabled"
+      [class.active]="item.id === model?.toLowerCase()"
+      [class.all]="!item.id"
+    >
+      <mat-checkbox *ngIf="type === 'checkbox'" [(ngModel)]="item.checked"></mat-checkbox>
+      <a class="{{ item.order ? 'padding-l-' + ((item['order'] - 1) * 30 + 10) : '' }}">
+        <span [innerHTML]="item.name | highlight: searchModel"></span>
+      </a>
+    </li>
+  </ul>
+</ng-template>

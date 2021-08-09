@@ -1,0 +1,31 @@
+{"menu":[
+  {
+    "title": "",
+    "icon": "home",
+    "order": 0
+  },
+  {
+    "title": "menu 1",
+    "icon": "",
+    "id": "a",
+    "order": 0
+  },
+  {
+    "title": "menu 2",
+    "icon": "",
+    "id": "b",
+    "order": 0
+  },
+  {
+    "title": "menu 3",
+    "icon": "",
+    "id": "c",
+    "order": 0
+  },
+  {
+    "title": "menu 4",
+    "icon": "",
+    "id": "d",
+    "order": 0
+  }
+]}

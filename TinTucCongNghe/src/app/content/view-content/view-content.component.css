@@ -1,0 +1,32 @@
+/* .content {
+  position: absolute;
+  top: 65px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  overflow-y: scroll;
+
+} */
+
+/* .content-mob {
+  position: absolute;
+  top: 113px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  overflow-y: scroll;
+
+} */
+
+.example-card {
+  max-width: 320px;
+  margin: 10px 5px 5px 0px;
+  height: 550px;
+}
+
+.example-sidenav-content:first-child {
+  margin: 10px 5px 5px 5px;
+}
+mat-card-title{
+  height: 100px;
+}

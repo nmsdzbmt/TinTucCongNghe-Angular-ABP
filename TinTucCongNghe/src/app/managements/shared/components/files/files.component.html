@@ -1,0 +1,30 @@
+<div class="select-file display-flex">
+
+  <span *ngIf="!readonly">
+    <input id="{{ id }}" name="{{ id }}"  style="display: none;" type="file" multiple  (change)="onSelectFile($event, listFile)">
+    <label class="btn btn-sm green fileinput-button" for="{{ id }}">
+      <i class="fa fa-cloud-upload"></i>
+      Thêm tập tin
+    </label>
+  </span>
+
+  <!-- <span *ngIf="readonly">
+    <label class="btn btn-sm green fileinput-button"  >
+      <i class="fa fa-cloud-upload"></i>
+      Danh sách tập tin
+    </label>
+  </span> -->
+
+
+  <div class="display-flex flex-wrap">
+    <ng-container *ngFor="let file of listFile; let index = index">
+      <div class="thumbnail position position-relative margin-lr-7 height-40 width-50 margin-b-30" (click)="openDialog(file)" >
+        <img class="full-width full-height" src="{{ getThumbnailFile(file) }}"  [attr.title]="file.name" alt="image"> 
+        <span class="three-dots display-block">{{ file.name }}</span>
+        <i *ngIf="!readonly" class="font-red fa fa-close bold position position-absolute top--2 right--4"  title="Xóa hình" (click)="removeFileIndex(index, listFile)"></i>
+        <i *ngIf="file.id"  class="font-blue fa fa-download position bold position-absolute top--2 left--4" (click)="downloadFile(file.fileUrl)"  ></i>
+      </div>
+    </ng-container>
+  </div>
+
+</div>

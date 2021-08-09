@@ -1,0 +1,89 @@
+$border-color: #ddd;
+
+:host ::ng-deep {
+  button {
+    color: #fff;
+    outline: none;
+  }
+}
+
+.content-header {
+  padding: 1.5rem 0;
+  border-bottom: 1px solid $border-color;
+
+  .container-fluid {
+    padding: 0 1.5rem;
+    display: flex;
+    justify-content: space-between;
+
+    h4 {
+      display: flex;
+      align-items: center;
+      margin: 0;
+      color: #32c5d2;
+      text-transform: uppercase;
+
+      i {
+        font-size: 1.25rem;
+        margin-right: 0.5rem;
+      }
+    }
+
+    .col-6 {
+      padding: 0;
+      display: flex;
+      align-items: center;
+
+      &.text-right {
+        display: flex;
+        justify-content: flex-end;
+      }
+    }
+
+    button {
+      border-radius: 20px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      margin-left: 1rem;
+    }
+  }
+}
+
+.content {
+  margin-top: 1.5rem;
+
+  .container-fluid {
+    padding: 0 1.5rem;
+  }
+}
+
+.filter-overview {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 1.5rem;
+  margin-bottom: 0.5rem;
+  flex-flow: wrap;
+  
+  .fo-dropdownlist {
+    margin-left: 1rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: #000;
+
+    > label {
+      margin-right: 10px;
+      margin-bottom: 0;
+    }
+    app-dropdownlist {
+      flex: 1 1 auto;
+    }
+
+    ::ng-deep {
+      button {
+        color: #000;
+      }
+    }
+  }
+}

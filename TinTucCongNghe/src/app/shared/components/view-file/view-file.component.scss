@@ -1,0 +1,10 @@
+:host::ng-deep{
+    #view-file{
+        .tui-image-editor-container {
+            min-height: 700px;
+        }
+        .tui-image-editor-header-buttons{
+            display: none !important;
+        }
+    }
+}

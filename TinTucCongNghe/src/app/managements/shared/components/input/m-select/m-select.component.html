@@ -1,0 +1,52 @@
+<ng-container [ngSwitch]="type">
+
+  <div class="form-group form-md-line-input {{ classCssWrap }}" [attr.id]="id" [ngClass]="{ 'has-error': error }">
+
+    <!-- kieu input -->
+    <ng-container *ngSwitchCase="'vertical'"      [ngTemplateOutlet]="vertical"></ng-container>
+    <ng-container *ngSwitchCase="'vertical_icon'" [ngTemplateOutlet]="vertical_icon"></ng-container>
+
+    <!-- xuat thong bao loi -->
+    <ng-container [ngTemplateOutlet]="error_messager"></ng-container>
+
+  </div>
+</ng-container>
+
+<ng-template #vertical>
+  <ng-container [ngTemplateOutlet]="select_input"></ng-container>
+  <ng-container [ngTemplateOutlet]="title_input"></ng-container>
+</ng-template>
+
+<ng-template #vertical_icon>
+  <div class="input-icon" [ngClass]="{ 'left': alignIcon === 'left', 'right': alignIcon === 'right' }">
+    <ng-container [ngTemplateOutlet]="select_input"></ng-container>
+    <ng-container [ngTemplateOutlet]="title_input"></ng-container>
+    <i [attr.class]="icon"></i>
+  </div>
+</ng-template>
+
+
+<!-- #region title -->
+<ng-template #title_input>
+  <label> {{  title }}</label>
+</ng-template>
+
+<!-- #endregion -->
+
+<!-- #region  input -->
+<ng-template #select_input>
+  <select class="form-control" (change)="handler($event.target.value)"  [disabled]="readonly" [value]="valueDefault" >
+    <option value=""></option>
+    <ng-container>
+      <option *ngFor="let item of list" [value]="item.id">{{ item.name }}</option>
+    </ng-container>
+  </select>
+</ng-template>
+
+<!-- #endregion -->
+
+<!-- #region thong bao loi -->
+<ng-template #error_messager>
+  <ng-content select=".input-error"></ng-content>
+</ng-template>
+<!-- #endregion -->

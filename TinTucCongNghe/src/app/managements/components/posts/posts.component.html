@@ -1,0 +1,9 @@
+<div class="container-fluid">
+    <app-overview-page 
+        *ngIf="tableOverViewModel" 
+        [tableOverViewModel]="tableOverViewModel" 
+        [actions]="actions"
+        [title]="title" 
+        (selectionButtonClick)="deleteSelection($event)">
+    </app-overview-page>
+</div>

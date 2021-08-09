@@ -1,0 +1,54 @@
+:host::ng-deep {
+    
+    .table_default{
+        .table_acton_filter{
+            .form-group.form-md-line-input{
+                padding-top: 0 !important;
+            }
+        }
+
+
+        .text-header, .text-row{
+            display: inline-block;
+            padding-top: 3px;
+            padding-bottom: 3px;
+            padding-left: 15px;
+        }
+    
+        .action_edit{
+            text-align: right;
+            background: white;
+            display: block;
+            width: 100%;
+            height: 30px;
+            padding-right: 15px;
+            border-left:   1px solid #d1d4d7 !important;
+            border-bottom:  1px solid #d1d4d7 !important;
+        }
+
+        .resize-handle{
+            display: none !important;
+        }
+        
+        .sort-btn{
+            display: none !important;
+        }
+
+        .action_edit_header{
+            background: #3598DC;
+            width: 100px;
+            height: inherit;
+            display: inline-block;
+            border-left:   1px solid #d1d4d7 !important;
+            border-bottom:  1px solid #d1d4d7 !important;
+        }
+        
+        .datatable-body-row{
+            .datatable-row-right{
+                margin-left: 10px;
+            }
+        }
+    }
+
+    
+}

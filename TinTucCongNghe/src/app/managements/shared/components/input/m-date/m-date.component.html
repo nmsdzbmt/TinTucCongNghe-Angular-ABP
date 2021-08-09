@@ -1,0 +1,48 @@
+<ng-container [ngSwitch]="type">
+
+  <div class="form-group form-md-line-input {{ classCssWrap }}" [attr.id]="id" [ngClass]="{ 'has-error': error }">
+
+    <!-- kieu input -->
+    <ng-container *ngSwitchCase="'vertical'"      [ngTemplateOutlet]="vertical"></ng-container>
+    <ng-container *ngSwitchCase="'vertical_icon'" [ngTemplateOutlet]="vertical_icon"></ng-container>
+
+
+  </div>
+      <!-- xuat thong bao loi -->
+      <ng-container [ngTemplateOutlet]="error_messager"></ng-container>
+</ng-container>
+
+<ng-template #vertical>
+  <ng-container [ngTemplateOutlet]="text_input"></ng-container>
+  <ng-container [ngTemplateOutlet]="title_input"></ng-container>
+</ng-template>
+
+<ng-template #vertical_icon>
+  <div class="input-icon" [ngClass]="{ 'left': alignIcon === 'left', 'right': alignIcon === 'right' }">
+    <ng-container [ngTemplateOutlet]="text_input"></ng-container>
+    <ng-container [ngTemplateOutlet]="title_input"></ng-container>
+    <i [attr.class]="icon"></i>
+  </div>
+</ng-template>
+
+
+<!-- #region title -->
+<ng-template #title_input>
+  <label> {{  title }}</label>
+</ng-template>
+
+<!-- #endregion -->
+
+<!-- #region  input -->
+<ng-template #text_input>
+  <input *ngIf="formControl"  [formControl]="formControl" #dp="bsDatepicker" [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }" bsDatepicker class="form-control pointer {{ classCssInput }}" [attr.name]="name"  [readonly]="readonly" [attr.placeholder]="placeholder" > 
+  <input *ngIf="!formControl" [formControl]="formControl" #dp="bsDatepicker" [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }" bsDatepicker class="form-control pointer {{ classCssInput }}" [attr.name]="name"  [readonly]="readonly" [attr.placeholder]="placeholder" (bsValueChange)="handler($event)" > 
+</ng-template>
+
+<!-- #endregion -->
+
+<!-- #region thong bao loi -->
+<ng-template #error_messager>
+  <ng-content select=".input-error"></ng-content>
+</ng-template>
+<!-- #endregion -->

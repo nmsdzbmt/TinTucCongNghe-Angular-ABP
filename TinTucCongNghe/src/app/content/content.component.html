@@ -1,0 +1,22 @@
+<article [class.content]="!deviceXs" [class.content-mob]="deviceXs" (scroll)="onScroll($event)">
+  <mat-toolbar>
+    <button *ngIf="deviceXs" type="button" mat-icon-button (click)="drawer.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    Danh Sách Thể Loại
+  </mat-toolbar>
+  <mat-drawer-container class="example-container">
+    <mat-drawer #drawer [mode]="deviceXs?'over':'side'" [opened]="deviceXs?false:true" position="start" fxFlex="50"
+      fxLayout="column" fxLayoutAlign="start space-between" [style.marginTop.px]="-5" [style.top.px]="sideBarScroll()">
+      <mat-list role="list" class="list-width" *ngFor="let thl of _theLoai">
+        <mat-list-item role="listitem" class="list-item" matRipple (click)='clickk(thl.id)'><mat-icon matListIcon>more</mat-icon>{{thl.name}}</mat-list-item>
+      </mat-list>
+    </mat-drawer>
+    <mat-drawer-content>
+      <app-view-content 
+      [id]="mangso"
+      >
+      </app-view-content>
+    </mat-drawer-content>
+  </mat-drawer-container>
+</article>

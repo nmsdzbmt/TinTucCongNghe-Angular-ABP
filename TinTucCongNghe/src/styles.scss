@@ -1,0 +1,250 @@
+@import '~material-design-icons/iconfont/material-icons.css';
+@import '~roboto-fontface/css/roboto/roboto-fontface.css';
+@import '~perfect-scrollbar/css/perfect-scrollbar.css';
+@import '~font-awesome/css/font-awesome.css';
+
+html {
+  font-size: 14px;
+}
+
+body {
+  margin: 0;
+  font-family: 'Roboto', Helvetica, Arial, sans-serif;
+  background-color: #ffffff;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none;
+}
+
+button {
+  box-shadow: none !important;
+}
+
+// STYLE FOR Group-control
+.form-group {
+  &.row {
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  label {
+    font-weight: 500;
+  }
+
+  .group-control {
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    display: flex;
+    align-items: center;
+    background: #ececec;
+    padding: 0;
+    overflow: hidden;
+
+    i {
+      margin: 0 10px;
+    }
+
+    input {
+      border: none;
+      border-left: 1px solid #ced4da;
+      border-radius: 0;
+      box-shadow: none;
+      &[type='number'] {
+        text-align: right;
+      }
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+}
+
+.is-invalid {
+  border-color: #dc3545 !important;
+}
+
+// STYLE CHECKBOX
+.mat-checkbox {
+  label {
+    margin-bottom: 3px;
+  }
+}
+
+// STYLE FORM DIALOG
+.mat-dialog-title {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+  min-height: 50px;
+  margin: -24px -24px 0 -24px !important;
+  padding: 10px 24px;
+  background: #796799;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 1rem;
+
+  span.material-icons {
+    margin-right: 0.825rem;
+    margin-bottom: 3px;
+    font-size: 1.125rem;
+  }
+}
+
+.mat-dialog-content {
+  position: relative;
+  flex: 1 1 auto;
+  padding: 24px !important;
+  max-height: unset !important;
+}
+
+.mat-dialog-actions {
+  justify-content: space-between;
+  border-top: 1px solid #ccc;
+  margin: 0 -24px -24px -24px;
+  padding: 10px 24px !important;
+
+  button {
+    color: #fff;
+    outline: none;
+    min-width: 80px;
+
+    span.material-icons {
+      font-size: 18px;
+      margin-right: 2px;
+      margin-bottom: 2px;
+    }
+  }
+
+  // .save {
+  //   background: rgb(50, 197, 210);
+  // }
+
+  // .delete {
+  //   background: rgb(231, 80, 90);
+  // }
+
+  // .close {
+  //   border: 1px solid #ccc;
+  //   color: #000;
+  //   background-color: transparent;
+  //   opacity: 1;
+  //   width: 80px;
+  // }
+}
+
+.ps > .ps__rail-x,
+.ps > .ps__rail-y {
+  opacity: 0.6;
+}
+
+// STYLE FOR M-CHIP
+.mat-input-element {
+  font: inherit;
+  background: transparent;
+  color: currentColor;
+  border: none;
+  outline: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  max-width: 100%;
+  vertical-align: bottom;
+  text-align: inherit;
+}
+
+.mat-chip-list {
+  min-height: 32px;
+  .mat-chip-list-wrapper {
+    margin: auto 0;
+    .mat-chip-input {
+      margin: 6px;
+    }
+  }
+
+  .mat-standard-chip {
+    &.mat-chip {
+      padding-top: 3px;
+      padding-bottom: 3px;
+      min-height: 24px;
+    }
+    .mat-chip-remove {
+      width: 14px;
+      height: 14px;
+      &.material-icons {
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+// STYLE FOR BUTTONS
+
+// button {
+//   &.btn-xs {
+//     padding: 0.4rem 0.8rem;
+//     font-size: 0.8rem;
+//     line-height: 1.5;
+//     border-radius: 0.2rem;
+
+//     .fa {
+//       font-size: 0.7rem;
+//     }
+//   }
+
+//   &.icon-left {
+//     .icon,
+//     .fa {
+//       padding-right: 5px;
+//     }
+//   }
+
+//   &.icon-right {
+//     .icon,
+//     .fa {
+//       padding-left: 5px;
+//     }
+//   }
+// }
+
+@media screen and (max-width: 767px) {
+  button {
+    .icon,
+    .fa {
+      padding-right: 0 !important;
+      padding-left: 0 !important;
+    }
+  }
+}
+
+// STYLE FOR PAGINATION
+.pagination a {
+  min-height: 30px !important;
+  max-height: 30px !important;
+}
+
+//STYLE TOOLBAR MT
+.mat-toolbar-row,
+.mat-toolbar-single-row {
+  max-height: 50px;
+}
+
+.three-dots {
+  white-space: nowrap;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
+  min-width: 200px;
+}
+
+.note-modal-backdrop {
+  display: none !important;
+}
+
+.note-editable {
+  background: #fff;
+}

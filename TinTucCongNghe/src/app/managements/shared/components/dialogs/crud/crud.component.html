@@ -1,0 +1,102 @@
+<div [attr.id]="nameForm" class="form-action" *ngIf="form">
+
+  <modal-header [title]="title"></modal-header>
+
+  <div class="modal-body">
+
+    <form [formGroup]="form" class="row">
+
+      <ng-container *ngFor="let item of configLayout">
+
+        <container-element [ngSwitch]="item.type">
+          <some-element *ngSwitchCase="'password'" [ngTemplateOutlet]="password"      [ngTemplateOutletContext]="{ item: item }"></some-element>
+          <some-element *ngSwitchCase="'text'"     [ngTemplateOutlet]="text"          [ngTemplateOutletContext]="{ item: item }"></some-element>
+          <some-element *ngSwitchCase="'number'"   [ngTemplateOutlet]="number"        [ngTemplateOutletContext]="{ item: item }"></some-element>
+          <some-element *ngSwitchCase="'select'"   [ngTemplateOutlet]="select"        [ngTemplateOutletContext]="{ item: item }"></some-element>
+          <some-element *ngSwitchCase="'textarea'" [ngTemplateOutlet]="textarea"      [ngTemplateOutletContext]="{ item: item }"></some-element>
+          <some-element *ngSwitchCase="'date'"     [ngTemplateOutlet]="date"          [ngTemplateOutletContext]="{ item: item }"></some-element>
+          <some-element *ngSwitchCase="'multi_select'"     [ngTemplateOutlet]="multi_select"          [ngTemplateOutletContext]="{ item: item }"></some-element>
+          <some-element *ngSwitchDefault           [ngTemplateOutlet]="item.template" [ngTemplateOutletContext]="{ data: item }"></some-element>
+        </container-element>
+      </ng-container>
+    </form>
+  </div>
+
+  <modal-footer [isNew]="isNew" [statusForm]="form.valid" (onSave)="save(form)" (onDelete)="delete(form)">
+  </modal-footer>
+</div>
+
+<ng-template #password let-item="item">
+  <m-password [formControl]="form.get(item.key)" [valueDefault]="form.value[item.key]" [attr.class]="item.style.stackCss" [title]="item.name" [id]="nameForm + '_'  + item.key"
+    [type]="item.style.type" [icon]="item.style.icon" [typeUpdateValue]="item.typeUpdateValue"
+    [placeholder]="item.placeholder">
+    <div class="input-error">
+      <ng-container [ngTemplateOutlet]="list_error" [ngTemplateOutletContext]="{ list: item.listError }"></ng-container>
+    </div>
+  </m-password>
+</ng-template>
+
+<ng-template #text let-item="item">
+  <m-text [formControl]="form.get(item.key)" [error]="isHasError(item.key) ? 'has-error': '' "  [valueDefault]="form.value[item.key]" [attr.class]="item.style.stackCss" [title]="item.name" [id]="nameForm + '_'  + item.key"
+    [type]="item.style.type" [icon]="item.style.icon" [typeUpdateValue]="item.typeUpdateValue"
+    [placeholder]="item.placeholder">
+    <div class="input-error">
+      <ng-container [ngTemplateOutlet]="list_error" [ngTemplateOutletContext]="{ list: item.listError }"></ng-container>
+    </div>
+  </m-text>
+</ng-template>
+
+<ng-template #number let-item="item">
+  <m-number [formControl]="form.get(item.key)" [error]="isHasError(item.key) ? 'has-error': '' " [valueDefault]="form.value[item.key]" [attr.class]="item.style.stackCss" [title]="item.name" [id]="nameForm + '_'  + item.key"
+    [type]="item.style.type" [icon]="item.style.icon" [typeUpdateValue]="item.typeUpdateValue"
+    [placeholder]="item.placeholder">
+    <div class="input-error">
+      <ng-container [ngTemplateOutlet]="list_error" [ngTemplateOutletContext]="{ list: item.listError }"></ng-container>
+    </div>
+  </m-number>
+</ng-template>
+
+<ng-template #select let-item="item">
+  <m-select [formControl]="form.get(item.key)" [error]="isHasError(item.key) ? 'has-error': '' "  [valueDefault]="form.value[item.key]" [attr.class]="item.style.stackCss" [title]="item.name" [id]="nameForm + '_'  + item.key"
+    [type]="item.style.type" [icon]="item.style.icon" [typeUpdateValue]="item.typeUpdateValue" [list]="item.listSelect"
+    [placeholder]="item.placeholder">
+    <div class="input-error">
+      <ng-container [ngTemplateOutlet]="list_error" [ngTemplateOutletContext]="{ list: item.listError }"></ng-container>
+    </div>
+  </m-select>
+</ng-template>
+
+<ng-template #date let-item="item">
+  <m-date [formControl]="form.controls[item.key]" [error]="isHasError(item.key) ? 'has-error': '' " [attr.class]="item.style.stackCss" [title]="item.name" [id]="nameForm + '_'  + item.key"
+    [type]="'vertical_icon'" [icon]="'fa fa-calendar'" [typeUpdateValue]="item.typeUpdateValue"
+    [placeholder]="'dd-mm-yyyy'">
+
+    <div class="input-error">
+      <ng-container [ngTemplateOutlet]="list_error" [ngTemplateOutletContext]="{ list: item.listError }"></ng-container>
+    </div>
+  </m-date>
+</ng-template>
+
+<ng-template #textarea let-item="item">
+  <m-textarea [formControl]="form.get(item.key)" [error]="isHasError(item.key) ? 'has-error': '' "  [valueDefault]="form.value[item.key]" [attr.class]="item.style.stackCss" [title]="item.name" [id]="nameForm + '_'  + item.key"
+    [type]="item.style.type" [icon]="item.style.icon" [typeUpdateValue]="item.typeUpdateValue"
+    [placeholder]="item.placeholder">
+    <div class="input-error">
+      <ng-container [ngTemplateOutlet]="list_error" [ngTemplateOutletContext]="{ list: item.listError }">
+      </ng-container>
+    </div>
+  </m-textarea>
+</ng-template>
+<ng-template #list_error let-list="list">
+  <app-notify-error *ngFor="let i of list" [form]="form" [key]="i.key" [content]="i.value"></app-notify-error>
+</ng-template>
+
+<ng-template #multi_select let-item="item">
+  <div class="{{ item.style.stackCss }} margin-b-10">
+    <span style="font-weight: 700; font-size: 14px; color: #888888; opacity: 1;">{{item.name }}</span>
+    <ng-multiselect-dropdown [placeholder]="'Lựa chọn'" [formControl]="form.get(item.key)" [data]="item.listSelect" [settings]="dropdownSettings">
+    </ng-multiselect-dropdown>
+  </div>
+
+
+</ng-template>

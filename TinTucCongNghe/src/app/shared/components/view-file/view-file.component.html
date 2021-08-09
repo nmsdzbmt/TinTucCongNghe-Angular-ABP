@@ -1,0 +1,9 @@
+<div id="view-file" class="form-action">
+
+  <div class="modal-body padding-0">
+    <i class="fa fa-close position position-absolute font-white font-size-20 z-index-1 top-12 right-13 pointer" (click)="hidden()"></i>
+    <i class="fa fa-download position position-absolute font-white font-size-20 z-index-1 top-15 right-50 pointer" *ngIf="file?.fileUrl" (click)="downloadFile()"></i>
+    
+    <div id="tui-image-editor-1"></div>
+  </div>
+</div>

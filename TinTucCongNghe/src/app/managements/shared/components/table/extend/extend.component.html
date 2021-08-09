@@ -1,0 +1,68 @@
+<div id="table-extend" class="table-responsive">
+  <table class="table table-bordered table-hover table-striped">
+    <thead class="bg-blue font-white">
+      <tr>
+        <th *ngFor="let item of managementColumnName" width="{{item.width ? item.width : 'auto'}}">
+
+          <div class="btn-group" *ngIf="item.sort">
+            <button class="padding-0 btn blue dropdown-toggle font-size-10" type="button" data-toggle="dropdown"
+              aria-expanded="false">
+              <i class="{{ getIcon(item.icon, managementSortFilter[item.propertyName].order) }}"></i>
+              {{ item.prioritySort }}
+            </button>
+            <ul class="dropdown-menu" role="menu">
+              <li *ngFor="let u of levelSort" (click)="thayDoiUuTienSort(item, u)">
+                <a href="javascript:;"> {{ u }} </a>
+              </li>
+            </ul>
+          </div>
+
+          <span class="name margin-r-5">
+            {{ item.displayName }}
+          </span>
+
+          
+          <div class="btn-group pull-right" *ngIf="item.filter">
+            <button class="padding-0 btn blue dropdown-toggle font-size-12" type="button" data-toggle="dropdown" aria-expanded="false">
+              <i class="fa fa-filter"></i>
+            </button>
+            <ul class="dropdown-menu hold-on-click" role="menu">
+                <li>
+                  <a href="javascript:;"> 
+                    <div class="form-group form-md-line-input padding-t-0">
+                      <input [(ngModel)]="managementSortFilter[item.propertyName].valueSearch" type="text" class="form-control padding-0" placeholder="Nhập tìm kiếm" (input)="filter(managementSortFilter[item.propertyName].valueSearch, item.propertyName)">
+                      <label for="form_control_1"></label>
+                  </div>
+  
+                  </a>
+                </li>
+            </ul>
+        </div>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let std of data; let i = index">
+        <td *ngFor="let item of search.searchText == '' ? managementColumnName : _ut.filterContains(managementColumnName, search.searchName, search.propertyName); let j = index" class="{{item.class}}"
+          width="{{item.width ? item.width : 'auto'}}">
+          <!-- type text -->
+          <span *ngIf="(item.type == 'text' || !item.type) && !item.event"
+            class="{{item.textClass ? item.textClass(std) : ''}}">
+            {{item.innerText ? item.innerText(std) : getValueProperty(item.propertyName, std)}}
+          </span>
+          <span *ngIf="(item.type == 'text' || !item.type) && item.event"
+            class="{{item.textClass ? item.textClass(std) : ''}}" (click)="item.event(std)">
+            {{item.innerText ? item.innerText(std) : getValueProperty(item.propertyName, std)}}
+          </span>
+          <!-- type input -->
+          <input *ngIf="item.type == 'input'" type="{{item.inputType}}" (change)="item.event(std, item.propertyName)"
+            [(ngModel)]="data[i][item.propertyName]" class="form-control {{item.inputClass}}">
+          <!-- type button -->
+          <button *ngIf="item.type == 'button'" (click)="item.event(std)"
+            class="btn btn-sm {{item.buttonClass}}">
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

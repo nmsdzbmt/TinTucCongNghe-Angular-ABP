@@ -1,0 +1,76 @@
+<div class="card-body table-responsive p-0">
+  <table class="table table-hover text-nowrap" [busy]="isTableLoading">
+    <thead class="bg-light">
+      <tr>
+        <th class="checkbox">
+          <mat-checkbox [checked]="allChecked" [indeterminate]="someChecked()" (change)="checkedAll($event.checked)"></mat-checkbox>
+        </th>
+        <th class="checkbox">
+         STT
+        </th>
+        <th *ngFor="let header of tableOverViewModel.header" class="{{ header.css?.class }} ">
+          {{ header.title }}
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        [class.odd]="odd"
+        [class.even]="even"
+        *ngFor="
+          let row of tableOverViewModel.data
+            | paginate
+              : {
+                  id: 'server',
+                  itemsPerPage: pageSize,
+                  currentPage: pageNumber,
+                  totalItems: totalItems
+                };
+          let index = index;
+          let odd = odd;
+          let even = even;
+          index as i
+        "
+      >
+        <td class="checkbox"><mat-checkbox [(ngModel)]="row._checked" (ngModelChange)="updateAllChecked()"></mat-checkbox></td>
+        <td style ='text-align: center;'>{{i+1}}</td>
+        <td
+          *ngFor="let header of row._headerRow; let first = first"
+          class="pm {{ row.order && first ? 'padding-l-' + ((row['order'] - 1) * 30 + 10) : '' }}"
+        >
+          <div class="{{ header.css?.class }}">
+            <ng-container *ngFor="let rowItem of header.items">
+              <ng-container *ngIf="rowItem.type === 'view'">
+                <span class="{{ rowItem.css?.class }}">{{ row[rowItem.key] }}</span>
+              </ng-container>
+
+              <ng-container *ngIf="rowItem.type === 'html'">
+                <span class="{{ rowItem.css?.class }}" [innerHTML]="row[rowItem.key]"></span>
+              </ng-container>
+
+              <ng-container *ngIf="rowItem.type === 'text' || rowItem.type === 'number'">
+                <input [type]="rowItem.type" [(ngModel)]="row[rowItem.key]" />
+              </ng-container>
+
+              <ng-container *ngIf="rowItem.type === 'dialog' || rowItem.type === 'button' ||rowItem.type === 'expand'">
+                <button
+                  class="{{ row.children && rowItem.css?.active ? rowItem.css?.active?.class : rowItem.css?.class }}"
+                  (click)="callbackFunction(row, rowItem, index)"
+                >
+                  <i class="{{ row.children && rowItem.css?.active ? rowItem.css?.active?.icon : rowItem.css?.icon }}"></i>
+                  {{ rowItem.value }}
+                </button>
+              </ng-container>
+            </ng-container>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="d-flex align-items-center justify-content-end">
+  <span class="kt-badge kt-badge--inline kt-badge--pill kt-badge--success kt-badge--wide mr-3">
+    Tổng số: {{ tableOverViewModel.totalCount }}
+  </span>
+  <abp-pagination-controls id="server" (pageChange)="getDataPage($event)"> </abp-pagination-controls>
+</div>

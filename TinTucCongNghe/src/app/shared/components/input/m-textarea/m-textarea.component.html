@@ -1,0 +1,52 @@
+<ng-container [ngSwitch]="type">
+
+  <div class="form-group form-md-line-input {{ classCssWrap }}" [attr.id]="id" [ngClass]="{ 'has-error': error }">
+
+    <!-- kieu input -->
+    <ng-container *ngSwitchCase="'vertical'"      [ngTemplateOutlet]="vertical"></ng-container>
+    <ng-container *ngSwitchCase="'vertical_icon'" [ngTemplateOutlet]="vertical_icon"></ng-container>
+
+    <!-- xuat thong bao loi -->
+    <ng-container [ngTemplateOutlet]="error_messager"></ng-container>
+
+  </div>
+</ng-container>
+
+<ng-template #vertical>
+  <ng-container [ngTemplateOutlet]="textarea_input"></ng-container>
+  <ng-container [ngTemplateOutlet]="title_input"></ng-container>
+</ng-template>
+
+<ng-template #vertical_icon>
+  <div class="input-icon" [ngClass]="{ 'left': alignIcon === 'left', 'right': alignIcon === 'right' }">
+    <ng-container [ngTemplateOutlet]="textarea_input"></ng-container>
+    <ng-container [ngTemplateOutlet]="title_input"></ng-container>
+    <i [attr.class]="icon"></i>
+  </div>
+</ng-template>
+
+
+<!-- #region title -->
+<ng-template #title_input>
+  <label> {{  title }}</label>
+</ng-template>
+
+<!-- #endregion -->
+
+<!-- #region  input -->
+<ng-template #textarea_input>
+  <textarea *ngIf="typeUpdateValue == 'change'"  class="form-control" [attr.name]="name" 
+    [readonly]="readonly" [attr.placeholder]="placeholder" (change)="handler($event.target.value)"></textarea>
+  <textarea *ngIf="typeUpdateValue == 'input' || !typeUpdateValue"  class="form-control" [attr.name]="name"
+    [readonly]="readonly" [attr.placeholder]="placeholder" (input)="handler($event.target.value)"></textarea>
+  <textarea *ngIf="typeUpdateValue == 'blur'  "  class="form-control" [attr.name]="name" 
+    [readonly]="readonly" [attr.placeholder]="placeholder" (blur)="handler($event.target.value)"></textarea> 
+</ng-template>
+
+<!-- #endregion -->
+
+<!-- #region thong bao loi -->
+<ng-template #error_messager>
+  <ng-container select=".input-error"></ng-container>
+</ng-template>
+<!-- #endregion -->

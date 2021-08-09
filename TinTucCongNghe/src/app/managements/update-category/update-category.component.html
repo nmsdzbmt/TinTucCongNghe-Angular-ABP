@@ -1,0 +1,82 @@
+<div mat-dialog-title>
+    <div class="caption font-red-sunglo">
+      <i class="margin-t-1 fa fa-edit font-red-sunglo"></i>
+      <span class="caption-subject text-bold text-uppercase">
+        {{ title }}
+      </span>
+      <a mat-dialog-close class="btn btn-default float-xl-right"><i class="fas fa-window-close"></i></a>
+    </div>
+  </div>
+  <form (ngSubmit)="update()">
+    <mat-dialog-content perfectScrollbar>
+      <div class="portlet-body form management-user-detail">
+        <div class="form-body magrin-l-0 magrin-r-0">
+  
+          <div class="form-group col-md-24 col-sm-24">
+            <div class="input-group">
+              <label for="code">Mã thể loại </label>
+              <span class="input-group-addon"><i class="fa fa-code"></i> </span>
+              <input type="text" name="code" [(ngModel)]="tl.code" style="width: 100%" class="form-control"
+                placeholder="Mã thể loại" />
+            </div>
+          </div>
+  
+          <div class="form-group col-md-24 col-sm-24">
+            <div class="input-group">
+              <label for="name">Tên thể loại </label>
+              <span class="input-group-addon"><i class="fa fa-certificate"></i>
+              </span>
+              <input type="text" name="name" [(ngModel)]="tl.name" style="width: 100%" class="form-control"
+                placeholder="Tên của thể loại" />
+            </div>
+          </div>
+  
+          <div class="form-group col-md-24 col-sm-24">
+            <div class="input-group">
+              <label for="nameSearch">Tên thể loại (Không dấu) </label>
+              <span class="input-group-addon"><i class="fa fa-certificate"></i>
+              </span>
+              <input type="text" name="nameSearch" [(ngModel)]="tl.nameSearch" style="width: 100%"
+                class="form-control" placeholder="Mã tìm kiếm của thể loại">
+            </div>
+          </div>
+  
+          <div class="form-group col-md-24 col-sm-24">
+            <div class="input-group">
+              <label for="slug">Đường dẫn thể loại </label>
+              <span class="input-group-addon"><i class="fa fa-code"></i> </span>
+              <input type="text" name="slug" [(ngModel)]="tl.slug" style="width: 100%" class="form-control"
+                placeholder="Đường dẫn của thể loại" >
+            </div>
+          </div>
+  
+          <div class="form-group col-md-24 col-sm-24">
+            <div class="input-group">
+              <label for="location">Vị trí </label>
+              <span class="input-group-addon"><i class="fa fa-code"></i> </span>
+              <input type="text" name="location" [(ngModel)]="tl.location" style="width: 100%" class="form-control"
+                placeholder="Vị trí của thể loại" />
+            </div>
+          </div>
+
+          <div class="form-group col-md-24 col-sm-24">
+            <div class="input-group">
+              <label for="status">Trạng thái   </label>
+              <span class="input-group-addon"><i class="fa fa-code"></i> </span>
+              <select name="status">
+                <option value = "1"> Cho phép </option>
+                <option value = "0"> Không cho phép </option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-dialog-content>
+  
+    <mat-dialog-actions>
+      <div class="form-group material float-xl-right">
+        <button type="submit" style="margin-right: 20px;" class="btn btn-primary"><i class="fas fa-save"> Sửa </i></button>
+        <button mat-dialog-close class="btn btn-warning"><i class="fas fa-close"> Đóng </i></button>
+      </div>
+    </mat-dialog-actions>
+  </form>

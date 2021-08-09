@@ -1,0 +1,19 @@
+.select-file{
+    
+        .thumbnail{
+            &:hover{
+                cursor: zoom-in;
+                .fa-close,.fa-download{
+                    display: block;
+                    cursor: pointer;
+                }
+            }
+
+            .fa-close, .fa-download{
+                border-radius: 50%;
+                font-size: 18px;
+                display: none;
+            }
+            
+        }
+}

@@ -1,0 +1,126 @@
+::ng-deep {
+  .cdk-overlay-pane {
+    flex-direction: column;
+
+    .search {
+      width: 100%;
+      padding: 15px 10px;
+      background: #796799;
+      border-bottom: 1px solid #999;
+
+      input {
+        width: 100%;
+        border-radius: 2px;
+        border: 1px solid #ccc;
+        padding: 3px 10px;
+      }
+    }
+  }
+  .overlay-dropdown-menu {
+    list-style: none;
+    padding: 0;
+    position: relative;
+    max-height: 400px;
+    overflow: auto;
+
+    li {
+      border-bottom: 1px solid #999;
+      cursor: pointer;
+      display: flex;
+      color: #fff !important;
+      background-color: #796799;
+      border-color: #9381b3;
+      align-items: center;
+      padding: 0 10px;
+
+      &.disabled {
+        cursor: not-allowed;
+        text-decoration: line-through;
+      }
+
+      &.all {
+        border-top: 1px solid #fff !important;
+        border-bottom: 1px solid #fff !important;
+        font-weight: bold;
+      }
+
+      &:hover,
+      &.active {
+        background-color: #61527b;
+        border-color: #5c4e75;
+      }
+
+      a {
+        padding: 10px 0px;
+        width: 100%;
+        display: block;
+        text-decoration: none;
+      }
+
+      .mat-checkbox {
+        color: red;
+      }
+    }
+  }
+}
+
+.dropdown {
+  width: 100%;
+  background: #fff;
+  overflow: hidden;
+
+  button {
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-left: 1px solid #ced4da;
+    border-radius: 0;
+
+    span {
+      &:first-child {
+        flex: 1 1 auto;
+        text-align: left;
+        white-space: nowrap;
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      &.caret {
+        transition: all 300ms;
+
+        &.open {
+          transform: rotate(-180deg);
+        }
+      }
+    }
+  }
+
+  .dropdown-menu {
+    box-shadow: 3px 3px rgba(102, 102, 102, 0.1);
+
+    li {
+      border-bottom: 1px solid #999;
+
+      a {
+        color: #fff;
+        background-color: #796799;
+        border-color: #796799;
+        padding: 10px 0px;
+
+        &:hover,
+        &.active {
+          background-color: #61527b;
+          border-color: #5c4e75;
+        }
+      }
+    }
+
+    &:after {
+      border-bottom-color: #796799;
+    }
+  }
+}

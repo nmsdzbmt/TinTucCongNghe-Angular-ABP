@@ -1,0 +1,33 @@
+<!-- <div style="height: 650px;">
+    <h2 mat-dialog-title>Windows 11 không có Internet Explorer</h2>
+    <mat-dialog-content class="mat-typography">
+        <h3>Hôm qua Microsoft đã tiết lộ rằng Internet Explorer sẽ bị không có trong hệ điều hành Windows 11.</h3>
+        <img style="display: block; margin-left: auto; margin-right: auto;"
+            src="https://media.techz.vn/media2019/source/2A-Tung/%E1%BA%A2nh/windows-11-.jpg" alt="">
+        <h3>Mặc dù phải đến ngày 15 tháng 6 năm 2022, Microsoft mới chấm dứt hỗ trợ IE và nhiều người dùng tin rằng ứng
+            dụng này vẫn sẽ còn trong hệ sinh thái Windows. Nhưng nó thực sự biến mất hoàn toàn khỏi Windows 11.
+
+            Trong một cuộc phỏng vấn của The Verge, đại diện của Microsoft cho biết “Ứng dụng duyệt web Internet
+            Explorer 11 sẽ không khả dụng trên Windows 11. Microsoft Edge là trình duyệt mặc định cho Windows 11".</h3>
+        <img style="display: block; margin-left: auto; margin-right: auto;"
+            src="https://media.techz.vn/media2019/source/2A-Tung/%E1%BA%A2nh/windows-11-.jpg" alt="">
+        <h3>Đây là lần đầu tiên Microsoft không kết hợp Internet Explorer với phiên bản Windows mới trong hơn 20 năm
+            qua. Phiên bản Windows 95 OEM Service Release 2.5 vào năm 1997 là lần đầu tiên Microsoft kết hợp Internet
+            Explorer một cách rõ ràng vào Windows Explorer và các phần quan trọng khác của Windows.
+
+            Với việc ra mắt Windows 11, Microsoft đã chính thức kết thúc mối liên quan giữa IE và hệ sinh thái của
+            Windows. Nếu muốn tiếp tục dùng IE, người dùng sẽ dừng chân ở bản Windows 10.</h3>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close style="color: black;">Đóng</button>
+    </mat-dialog-actions>
+</div> -->
+<div style="height: 650px;" *ngFor="let bv of _baiViet">
+    <h2 mat-dialog-title>{{bv.title}}</h2>
+    <mat-dialog-content class="mat-typography">
+        <span class="mat-h5" [innerHTML]="bv.description"></span> 
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close style="color: black;">Đóng</button>
+    </mat-dialog-actions>
+</div>

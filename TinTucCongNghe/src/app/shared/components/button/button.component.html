@@ -1,0 +1,39 @@
+<button *ngIf="key == 'save'" type="button" class="btn btn-sm green position position-relative padding-r-10 {{ classCssButton }}" (click)="onClick()" [disabled]="!valid">
+  <span class="margin-r-10 {{ classCssText }}">{{ text ? text : 'Lưu' }}</span> <i class="font-size-11 fa fa-save position position-absolute right-7 {{ icon }}" style="top: 9.2px;"></i>
+</button>
+
+<button *ngIf="key == 'delete'" type="button" class="btn btn-sm red position position-relative padding-r-10 {{ classCssButton }}" (click)="onClick()" >
+  <span class="margin-r-10 {{ classCssText }}">  {{ text ? text : 'Xóa' }}</span> <i style="top: 9.5px;" class="font-size-11 fa fa-recycle position position-absolute right-7  {{ icon }}"></i>
+</button>
+
+<button *ngIf="key == 'confirm_delete'"  type="button" class="btn btn-sm red position position-relative padding-l-5 padding-r-9 {{ classCssButton }}" (click)="onClick()" >
+  <span class="margin-r-10 {{ classCssText }}">  {{ text ? text : ' Chắc chắn xóa' }}</span> <i style="top: 9.5px;" class="font-size-11 fa fa-recycle position position-absolute right-4  {{ icon }}" ></i>
+</button>
+
+<button *ngIf="key == 'add'" type="button" class="btn btn-sm green height-25 padding-0 padding-lr-7 {{ classCssButton }}" (click)="onClick()" [disabled]="!valid">
+  <span class="margin-r-5 {{ classCssText }}">{{ text ? text : 'Thêm' }}</span> <i class="fa fa-plus font-size-11"></i>
+</button>
+ 
+<button *ngIf="key == 'back'" type="button" class="btn btn-sm btn-default {{ classCssButton }}" (click)="onClick()">
+  <i class="fa fa-backward"></i>
+  {{ text ? text : 'Quay lại' }}
+</button>
+
+<button *ngIf="key == 'close'" type="button" class="btn btn-sm btn-default {{ classCssButton }}" (click)="onClick()">
+  <span class="margin-r-3">{{ text ? text : 'Đóng' }}</span>
+  <i class="fa fa-close"></i>
+</button> 
+
+<button *ngIf="key == 'edit'" class="margin-r-0 btn btn-sm blue height-20 font-size-10 padding-0 padding-lr-5 position position-relative {{ classCssButton }}" [disabled]="!valid" (click)="onClick()">
+  <span class="margin-r-13">{{ text ? text : 'Chỉnh sửa' }}</span> <i class="fa fa-edit position position-absolute right-4 top-5"></i>
+</button>
+
+<button *ngIf="!key && iconAlign == 'left'" class="btn btn-sm margin-r-0 {{ classCssButton }} min-wdith-60"  (click)="onClick()" [disabled]="!valid" title="{{ placeholder }}">
+    <i *ngIf="icon" class="margin-r-5 {{ icon }}"></i>
+    <span *ngIf="text" [attr.class]="classCssText">{{ text }}</span>
+</button>
+
+<button *ngIf="!key && iconAlign == 'right'" class="btn btn-sm margin-r-0 {{ classCssButton }} min-wdith-60"  (click)="onClick()" [disabled]="!valid" title="{{ placeholder }}">
+  <span *ngIf="text" [attr.class]="classCssText">{{ text }}</span>
+  <i *ngIf="icon" class="margin-l-5 {{ icon }}"></i>
+</button>

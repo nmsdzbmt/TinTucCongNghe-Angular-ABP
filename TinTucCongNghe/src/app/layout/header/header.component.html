@@ -1,0 +1,37 @@
+<mat-toolbar color="primary" class="sticky">
+  <mat-toolbar-row fxLayoutAlign="space-between center">
+    <div fxLayout="row">
+      <button mat-button>
+        <span class="logo">TechNews</span>
+      </button>
+      <div *ngIf="!deviceXs" fxLayout="row">
+        <button mat-button routerLink="/dashboard">TRANG CHỦ</button>
+        <button mat-button routerLink="/dashboard/Homepage">THỂ LOẠI</button>
+        <button mat-button routerLink="/dashboard/introduction">GIỚI THIỆU</button>
+
+      </div>
+    </div>
+    <button mat-icon-button class="search">
+      <mat-icon >search</mat-icon>
+    </button>
+    <div>
+      <button *ngIf="deviceXs" mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <button *ngIf="!deviceXs" mat-button [matMenuTriggerFor]="menu" fxLayoutAlign="end">
+        <mat-icon>account_circle</mat-icon>
+      </button>
+    </div>
+  </mat-toolbar-row>
+  <mat-toolbar-row *ngIf="deviceXs" fxLayoutAlign="space-between end">
+    <button mat-button routerLink="/dashboard">TRANG CHỦ</button>
+    <button mat-button routerLink="/dashboard/Homepage">THỂ LOẠI</button>
+    <button mat-button routerLink="/dashboard/introduction">GIỚI THIỆU</button>
+  </mat-toolbar-row>
+</mat-toolbar>
+<!-- Menu Items -->
+<mat-menu #menu="matMenu" fxLayoutAlign="end">
+  <button mat-menu-item>
+    <mat-icon>input</mat-icon>Đăng Nhập
+  </button>
+</mat-menu>

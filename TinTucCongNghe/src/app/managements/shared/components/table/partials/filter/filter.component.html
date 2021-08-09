@@ -1,0 +1,50 @@
+<div class="filter full-width display-flex flex-fill flex-wrap margin-b-5" >
+
+  <div class="input-group margin-r-10 margin-b-5" >
+      <span class="input-group-addon padding-0 padding-lr-5">
+          <i class="fa fa-search"></i>
+      </span>
+      <input *ngIf="!controlSearch" [(ngModel)]="search.value"  type="text" class="height-25 form-control" placeholder="Tìm kiếm theo tên"> 
+      <input *ngIf="controlSearch" [formControl]="controlSearch"  type="text" class="height-25 form-control" placeholder="Tìm kiếm theo tên"> 
+
+  </div>
+
+  <ng-container *ngFor="let item of listFilter; let index = index">
+      <ng-container *ngIf="item.template"  [ngTemplateOutlet]="item.template"   [ngTemplateOutletContext]="{ item: item, index: index }"></ng-container>
+      <ng-container *ngIf="!item.template"  [ngTemplateOutlet]="item_filter"     [ngTemplateOutletContext]="{ item: item }"></ng-container>
+  </ng-container>
+
+  <div class="btn-group" *ngIf="headers && headers.length > 0">
+      <button title="Lọc" class="btn btn-sm bg-blue-sharp margin-r-10 margin-b-5 dropdown-toggle height-25 padding-0 padding-lr-7" type="button" data-toggle="dropdown" aria-expanded="false">
+          <i class="fa fa-filter font-white font-size-17"></i>
+      </button>
+      <ul class="dropdown-menu margin-t-0 overflow-auto-y max-height-300 padding-0" role="menu">
+          <ng-container  *ngFor="let header of headers; let indexHeader = index">
+            <li (click)="setHidden(indexHeader)" *ngIf="header.key"> 
+                <a href="javascript:;" class="padding-lr-7"> 
+                    <i [ngClass]="!getHidden(indexHeader) ? 'fa-check-square checked' : 'fa-square not-checked' "
+                     class="fa m-check-box font-size-14 margin-r-7"></i> 
+                    {{ header.value }} 
+                </a>
+            </li>
+          </ng-container>
+      </ul>
+  </div>
+</div>
+
+<ng-template #item_filter let-item="item" >
+  <div class="btn-group">
+      <button  class="btn btn-sm btn-default margin-r-10 dropdown-toggle margin-b-5 padding-0 padding-lr-10 height-25" type="button" data-toggle="dropdown" aria-expanded="false">
+          {{ item.header }}  (<span class="font-red"> {{ item.nameSelect ? item.nameSelect : 'Tất cả' }} </span>)
+      </button>
+      <ul class="dropdown-menu margin-t-0 overflow-auto-y max-height-300 padding-0" role="menu">
+          <li *ngFor="let element of item.listSelect; let index = index" (click)="selectItemFilter(item, element)">
+              <a href="javascript:;" class="padding-lr-7"> 
+                  <i [ngClass]="checkItemFilter(item, element.id) ? 'fa-check-square checked' : 'fa-square not-checked' "
+                   class="fa m-check-box font-size-14 margin-r-7"></i> 
+                  {{ element.name }} 
+              </a>
+          </li>
+      </ul>
+  </div>
+</ng-template>

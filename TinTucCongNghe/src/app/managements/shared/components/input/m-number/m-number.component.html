@@ -1,0 +1,52 @@
+<ng-container [ngSwitch]="type">
+
+  <div class="form-group form-md-line-input {{ classCssWrap }}" [attr.id]="id" [ngClass]="{ 'has-error': error }">
+
+    <!-- kieu input -->
+    <ng-container *ngSwitchCase="'vertical'"      [ngTemplateOutlet]="vertical"></ng-container>
+    <ng-container *ngSwitchCase="'vertical_icon'" [ngTemplateOutlet]="vertical_icon"></ng-container>
+
+
+  </div>
+      <!-- xuat thong bao loi -->
+      <ng-container [ngTemplateOutlet]="error_messager"></ng-container>
+</ng-container>
+
+<ng-template #vertical>
+  <ng-container [ngTemplateOutlet]="text_input"></ng-container>
+  <ng-container [ngTemplateOutlet]="title_input"></ng-container>
+</ng-template>
+
+<ng-template #vertical_icon>
+  <div class="input-icon" [ngClass]="{ 'left': alignIcon === 'left', 'right': alignIcon === 'right' }">
+    <ng-container [ngTemplateOutlet]="text_input"></ng-container>
+    <ng-container [ngTemplateOutlet]="title_input"></ng-container>
+    <i class="pointer" (click)="onClickIcon.emit($event)" [attr.class]="icon"></i>
+  </div>
+</ng-template>
+
+
+<!-- #region title -->
+<ng-template #title_input>
+  <label> {{  title }}</label>
+</ng-template>
+
+<!-- #endregion -->
+
+<!-- #region  input -->
+<ng-template #text_input>
+  <input *ngIf="typeUpdateValue == 'change'" type="number" class="form-control {{ classCssInput }}" [attr.name]="name" [attr.value]="valueDefault"
+    [readonly]="readonly" [attr.placeholder]="placeholder" (change)="handler($event.target.value)">
+  <input *ngIf="typeUpdateValue == 'input' || !typeUpdateValue " type="number" class="form-control {{ classCssInput }}" [attr.name]="name" [attr.value]="valueDefault"
+    [readonly]="readonly" [attr.placeholder]="placeholder" (input)="handler($event.target.value)">
+  <input *ngIf="typeUpdateValue == 'blur'  " type="number" class="form-control {{ classCssInput }}" [attr.name]="name"  [attr.value]="valueDefault"
+    [readonly]="readonly" [attr.placeholder]="placeholder" (blur)="handler($event.target.value)"> 
+</ng-template>
+
+<!-- #endregion -->
+
+<!-- #region thong bao loi -->
+<ng-template #error_messager>
+  <ng-content select=".input-error"></ng-content>
+</ng-template>
+<!-- #endregion -->

@@ -1,0 +1,77 @@
+<div mat-dialog-title>
+    <div class="caption font-red-sunglo">
+        <i class="margin-t-1 fa fa-edit font-red-sunglo"></i>
+        <span class="caption-subject text-bold text-uppercase">
+            {{ title }}
+        </span>
+        <a mat-dialog-close class="btn btn-default float-xl-right"><i class="fas fa-window-close"></i></a>
+    </div>
+</div>
+<form (ngSubmit)="save()">
+    <mat-dialog-content perfectScrollbar>
+        <div class="portlet-body form management-user-detail">
+            <div class="form-body magrin-l-0 magrin-r-0">
+                <div class="form-group col-md-24 col-sm-24">
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="input-group">
+                                <label for="_theLoai.name"> Chọn thể loại : </label>
+                                <span class="input-group-addon"><i class="fa fa-code"></i> </span>
+                                <select name="_theLoai.id" [(ngModel)]="post.theLoaiID">
+                                    <option *ngFor="let _theLoai of TL" [ngValue]="_theLoai.id">
+                                        {{_theLoai.name}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-8">
+                            <div class="input-group">
+                                <label for="post.title">Tiêu đề : </label>
+                                <input type="text" name="post.title" [(ngModel)]="post.title" class="form-control"
+                                    placeholder="Nhập tiêu đề bài viết " />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div >
+                    <!-- Xay dung cho upload anh -->
+                    <label for="description">Ảnh :</label>
+                    <input type="file" (change)="onFileChange($event);">
+                    <!-- <button class="btn btn-primary" type="submit" (click) = "upload();">Upload ảnh</button> -->
+                </div>
+                <div>
+                    <label for="description">Tóm tắt :</label>
+                    <textarea name="post.description" type="text" [(ngModel)]="post.description" [ngxSummernote]="config">
+                            </textarea>
+
+                    <!-- <h5 class="html-header">HTML Output</h5>
+                            <div class="html">
+                                {{ htmlContent }}
+                            </div> -->
+                </div>
+                <div>
+                    <label for="content">Chi tiết bài viết :</label>
+                    <!-- <div [ngxSummernote]="config"></div> -->
+                    <textarea name="post.content" [(ngModel)]="post.content" [ngxSummernote]="config2">
+
+                    </textarea>
+                    <!-- <angular-editor name="post.content" [ngxSummernote]="config" [(ngModel)]="post.content"></angular-editor> -->
+                    <!-- <h5 class="html-header">HTML Output</h5>
+                    <div class="html">
+                        {{ htmlContent }}
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </mat-dialog-content>
+
+    <mat-dialog-actions>
+        <div class="form-group material float-xl-right">
+            <button type="submit" style="margin-right: 20px;" class=" btn btn-primary"><i class="fas fa-save"> Thêm
+                </i></button>
+            <button mat-dialog-close class=" btn btn-warning"><i class="fas fa-close"> Đóng
+                </i></button>
+        </div>
+    </mat-dialog-actions>
+</form>
